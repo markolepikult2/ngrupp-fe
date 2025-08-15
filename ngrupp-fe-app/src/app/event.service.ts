@@ -5,15 +5,16 @@ import { Event } from './models';
 
 @Injectable({ providedIn: 'root' })
 export class EventService {
-  private apiUrl = '/api/events';
+  private apiUrl = 'http://localhost:8080/api/events';
 
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<Event[]> {
-    //const mockEvents : Event[] = '[{"id":"1","name":"Concert","startTime":"2023-10-01T20:00:00Z","seats":100},{"id":"2","name":"Theater Play","startTime":"2023-10-02T19:30:00Z","seats":50}]';
-  //mockEvents.subscribe
+    console.log("Starting GET");
+    // Log the API URL for debugging purposes
+    console.log(`Fetching events from: ${this.apiUrl}`);
+    // Make the HTTP GET request to fetch events
     return this.http.get<Event[]>(this.apiUrl);
-    //return new Observable(mockEvents);
   }
 }
 
