@@ -1,0 +1,18 @@
+<form (ngSubmit)="addEvent()" #eventForm="ngForm" class="add-event-form">
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="event.name" name="name" required />
+  </label>
+  <label>
+    Start Time:
+    <input type="datetime-local" [(ngModel)]="event.startTime" name="startTime" required />
+  </label>
+  <label>
+    Seats:
+    <input type="number" [(ngModel)]="event.seats" name="seats" required min="1" />
+  </label>
+  <button type="submit">Add Event</button>
+</form>
+<div *ngIf="success" class="success-message">Event added successfully!</div>
+<div *ngIf="error" class="error-message">Error: {{ error }}</div>
+
