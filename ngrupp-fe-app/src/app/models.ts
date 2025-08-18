@@ -1,4 +1,4 @@
-export interface Event {
+export interface AppEvent {
   id: number;
   name: string;
   startTime: string;
@@ -20,7 +20,6 @@ export interface Booking {
 }
 
 export interface BookingDTO {
-  event: Event;
-  customers: Customer[]
+  event: AppEvent;
+  customers: Customer[];
 }
-

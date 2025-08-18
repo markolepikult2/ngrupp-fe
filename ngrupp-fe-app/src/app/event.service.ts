@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Event } from './models';
+import { AppEvent } from './models';
 
 @Injectable({ providedIn: 'root' })
 export class EventService {
@@ -9,15 +9,15 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(): Observable<Event[]> {
+  getEvents(): Observable<AppEvent[]> {
     console.log("Starting GET");
     // Log the API URL for debugging purposes
     console.log(`Fetching events from: ${this.apiUrl}`);
     // Make the HTTP GET request to fetch events
-    return this.http.get<Event[]>(this.apiUrl);
+    return this.http.get<AppEvent[]>(this.apiUrl);
   }
 
-  addEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.apiUrl, event);
+  addEvent(event: AppEvent): Observable<AppEvent> {
+    return this.http.post<AppEvent>(this.apiUrl, event);
   }
 }
