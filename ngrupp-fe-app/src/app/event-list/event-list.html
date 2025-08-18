@@ -5,12 +5,16 @@
         <th>Event Name</th>
         <th>Start Time</th>
         <th>Seats</th>
+        <th>Actions</th>
     </tr>
     <tr *ngFor="let event of events" class="event-card">
         <td>{{ event.name }}</td>
         <td>{{ event.startTime }}</td>
         <td>{{ event.seats }}</td>
+        <td>
+          <button (click)="openBookingDetails(event)">Book seat</button>
+        </td>
     </tr>
   </table>
 </div>
-
+<app-booking-details *ngIf="selectedEventId" [eventId]="selectedEventId" (close)="selectedEventId = null"></app-booking-details>
