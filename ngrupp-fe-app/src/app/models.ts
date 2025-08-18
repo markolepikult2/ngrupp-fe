@@ -19,3 +19,8 @@ export interface Booking {
   bookingTime: string;
 }
 
+export interface BookingDTO {
+  event: Event;
+  customers: Customer[]
+}
+
