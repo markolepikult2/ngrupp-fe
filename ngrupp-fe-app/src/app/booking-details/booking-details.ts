@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import { BookingDTO, Customer } from '../models';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AppEvent, BookingDTO, Customer} from '../models';
 import { BookingService } from '../booking.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./booking-details.scss']
 })
 export class BookingDetailsComponent {
-  @Input() eventId: number | null = null;
+  @Input() eventId: number | undefined;
+  @Output() selectedEvent = new EventEmitter<AppEvent>();
   booking: BookingDTO | null = null;
   error: string | null = null;
 
@@ -22,7 +23,7 @@ export class BookingDetailsComponent {
 
   ngOnChanges() {
     //fetchBooking() {
-    if (!this.eventId) return;
+    if (!this?.eventId) return;
     this.bookingService.getBookingDTO(this.eventId).subscribe({
       next: (data) => {
         this.booking = data;
@@ -42,6 +43,12 @@ export class BookingDetailsComponent {
 
     // Reset the form or handle post-booking logic as needed
     this.booking.customers.push(customer);
+  }
+
+  notifyParentToReset()  {
+    // Notify the parent component to reset the selected event
+    console.log("Resetting selected event in BookingDetailsComponent");
+    this.selectedEvent.emit(undefined);
   }
 }
 

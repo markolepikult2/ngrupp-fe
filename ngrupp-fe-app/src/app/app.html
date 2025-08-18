@@ -123,26 +123,22 @@
 
 <app-header></app-header>
 <main class="main">
-  <app-event-list></app-event-list>
-  <div class="content">
-    <div class="left-side">
-  left side
-    </div>
-  </div>
-  <div>
+  <div *ngIf="!selectedEvent" class="content">
+    <app-event-list (selectedEvent)="receiveSelectedEvent($event)"></app-event-list>
+    <div class="divider" role="separator" aria-label="Divider"></div>
     <app-add-event></app-add-event>
   </div>
-  <div class="divider" role="separator" aria-label="Divider">UUUUU</div>
+    <app-booking-details
+      *ngIf="selectedEvent" [eventId]="selectedEvent?.id"
+      (selectedEvent)="receiveSelectedEvent($event)"
+      (close)="selectedEvent = null"></app-booking-details>
+
+  <div>
+
+  </div>
+  <!-- div class="divider" role="separator" aria-label="Divider">UUUUU</div -->
 
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
 <router-outlet />
