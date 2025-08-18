@@ -1,0 +1,24 @@
+<div class="booking-details">
+  <h2>Booking Details for Event</h2>
+  <!-- form (submit)="fetchBooking()">
+    <label for="eventId">Event ID:</label>
+    <input id="eventId" type="number" [(ngModel)]="eventId" name="eventId" required />
+    <button type="submit">Get Booking</button>
+  </form -->
+  <div *ngIf="booking">
+    <h3>Event Info</h3>
+    <div>
+      <strong>ID:</strong> {{ booking?.event?.id }}<br />
+      <strong>Name:</strong> {{ booking?.event?.name }}<br />
+      <strong>Date:</strong> {{ booking?.event?.startTime }}<br />
+    </div>
+    <h3>Registered Customers</h3>
+    <ul>
+      <li *ngFor="let customer of booking.customers">
+        {{ customer.id }} - {{ customer.firstName }} {{ customer.lastName }} ({{ customer.email }})
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
+
