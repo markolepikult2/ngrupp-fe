@@ -13,6 +13,7 @@ env:
   # AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
   # AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '20.x'                # set this to the node version to use
+  INPUT_APP_BUILD_COMMAND: 'npm run build -- --configuration=production'
 
 jobs:
   build_and_deploy_job:
@@ -35,6 +36,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "./ngrupp-fe-app" # App source code path
           api_location: "" # Api source code path - optional
+          app_build_command: "npm run build -- --configuration=production"
           output_location: "dist/ngrupp-fe-app/browser" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
@@ -49,6 +51,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GENTLE_WAVE_071DA200F }}
           action: "close"
+
+
 
 
 
