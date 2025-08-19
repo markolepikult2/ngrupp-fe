@@ -6,10 +6,10 @@ export interface AppEvent {
 }
 
 export interface Customer {
-  id: string;
+  id: string | null;
   firstName: string;
   lastName: string;
-  email: string;
+  personalCode: string;
 }
 
 export interface Booking {
