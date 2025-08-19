@@ -10,5 +10,8 @@ export class BookingService {
   getBookingDTO(eventId: number): Observable<BookingDTO> {
     return this.http.get<BookingDTO>(`http://localhost:8080/api/booking/${eventId}`);
   }
-}
 
+  addBooking(booking: BookingDTO): Observable<BookingDTO> {
+    return this.http.post<BookingDTO>('http://localhost:8080/api/booking', booking);
+  }
+}

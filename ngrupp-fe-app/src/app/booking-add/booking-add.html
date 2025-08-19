@@ -1,0 +1,20 @@
+<div class="booking-form">
+  <h2>Register Csutomer to Event</h2>
+  <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+    <input id="eventId" type="number" [(ngModel)]="eventId" name="eventId" required hidden/>
+
+    <label for="firstName">First Name:</label>
+    <input id="firstName" type="text" [(ngModel)]="firstName" name="firstName" required />
+
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" type="text" [(ngModel)]="lastName" name="lastName" required />
+
+    <label for="personalCode">Personal Code:</label>
+    <input id="personalCode" type="text" [(ngModel)]="personalCode" name="personalCode" required />
+
+    <button type="submit">Add Booking</button>
+  </form>
+  <div *ngIf="success" class="success">Booking added successfully!</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
+
