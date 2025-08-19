@@ -7,10 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-booking-details',
   templateUrl: './booking-details.html',
-  imports: [
-    FormsModule,
-    CommonModule
-  ],
+  imports: [FormsModule, CommonModule],
   styleUrls: ['./booking-details.scss']
 })
 export class BookingDetailsComponent {
