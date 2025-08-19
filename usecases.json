@@ -71,7 +71,7 @@
         "componentName": "BookingFormComponent",
         "description": "A form view that allows users to input booking details and submit them to register a visitor for an event."
       },
-      "angularDescription": "Implements the booking creation feature in Angular using EventAddComponent. Integrates with the backend API to submit new booking data and display success or error messages."
+      "angularDescription": "Implements the booking creation feature in Angular using BookingAddComponent. Integrates with the backend API to submit new booking data and display success or error messages."
     }
     ]
 }
