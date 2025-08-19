@@ -36,36 +36,36 @@
       "angularDescription": "Implements the event creation feature in Angular using AddEventComponent. Integrates with the backend API to submit new event data and display success or error messages."
     },
     {
-      "useCaseId": "UC-GET-BOOKING-DTO",
-      "name": "Get BookingDTO for Event",
-      "description": "A user can retrieve a BookingDTO for a specific event, which contains the event details and all customers registered to it.",
-      "actors": ["ADMIN", "CUSTOMER", "GUEST"],
+      "useCaseId": "UC-LIST-BOOKINGS-OF-EVENT",
+      "name": "List Bookings of Event",
+      "description": "A user can view a list of all bookings for a specific event.",
+      "actors": ["ADMIN", "CUSTOMER","GUEST"],
       "permissionsRequired": ["booking:read"],
       "apiEndpoint": {
         "method": "GET",
         "path": "/api/booking/{eventId}",
-        "responseModel": "BookingDTO",
+        "responseModel": "BookingDTO[]",
         "pathParameters": {
-          "eventId": "The ID of the event."
+          "eventId": "The ID of the event for which bookings are to be listed."
         }
       },
       "uiComponent": {
-        "componentName": "BookingDetailsComponent",
-        "description": "Displays event details and all customers registered to the event."
+        "componentName": "BookingListComponent",
+        "description": "A view that displays bookings for a specific event in a list format."
       },
-      "angularDescription": "Implements the BookingDTO retrieval feature in Angular using BookingDetailsComponent. Integrates with the backend API to fetch and display event and customer details."
+      "angularDescription": "Implements the booking listing feature in Angular using BookingListComponent. Integrates with the backend API to fetch and display bookings for a specific event."
     },
     {
       "useCaseId": "UC-ADD-BOOKING-TO-EVENT",
       "name": "Add Booking to Event",
-      "description": "A user can register a visitor for a specific event by adding a booking.",
+      "description": "A user can register a visitor for a specific event by adding a booking. Each booking contains Event and Customer.",
       "actors": ["ADMIN", "CUSTOMER","GUEST"],
       "permissionsRequired": ["booking:create"],
       "apiEndpoint": {
         "method": "POST",
         "path": "/api/booking",
-        "requestModel": "Booking",
-        "responseModel": "Booking"
+        "requestModel": "BookingDTO",
+        "responseModel": "BookingDTO"
       },
       "uiComponent": {
         "componentName": "BookingFormComponent",
@@ -73,5 +73,5 @@
       },
       "angularDescription": "Implements the booking creation feature in Angular using EventAddComponent. Integrates with the backend API to submit new booking data and display success or error messages."
     }
-  ]
+    ]
 }
