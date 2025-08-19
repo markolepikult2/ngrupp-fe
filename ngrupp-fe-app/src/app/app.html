@@ -7,7 +7,7 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<style>
+<style xmlns="http://www.w3.org/1999/html">
   :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
@@ -128,14 +128,14 @@
     <div class="divider" role="separator" aria-label="Divider"></div>
     <app-add-event></app-add-event>
   </div>
+  <div>
     <app-booking-details
       *ngIf="selectedEvent" [eventId]="selectedEvent?.id"
       (selectedEvent)="receiveSelectedEvent($event)"
       (close)="selectedEvent = null"></app-booking-details>
-
-  <div>
-
+    <app-booking-add  *ngIf="selectedEvent"></app-booking-add>
   </div>
+
   <!-- div class="divider" role="separator" aria-label="Divider">UUUUU</div -->
 
 </main>

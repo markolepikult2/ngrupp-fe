@@ -7,10 +7,11 @@ import { AddEventComponent } from './add-event/add-event';
 import { HttpClientModule } from '@angular/common/http';
 import { AppEvent } from './models';
 import { BookingDetailsComponent } from './booking-details/booking-details';
+import { BookingAddComponent } from './booking-add/booking-add';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, EventList, HttpClientModule, AddEventComponent, BookingDetailsComponent, CommonModule],
+  imports: [RouterOutlet, Header, EventList, HttpClientModule, AddEventComponent, BookingDetailsComponent, CommonModule, BookingAddComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
