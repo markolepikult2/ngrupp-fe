@@ -1,59 +1,75 @@
-# NgruppFeApp
+# Ngrupp FE Angular Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
+## Overview
+This is an Angular front-end application for event management and booking, and user authentication.
+It supports role-based access, event listing, booking management, and integration with a backend API.
 
-## Development server
+## Project strategy
+The development strategy is as follows:
+1. Implement basic functionality for event listing, adding event and booking a seat at event.
+2. Deploy to Azure.
+3. Implement user authentication and role management. 
+4. Apply UI styling.
+5. Implement error handling and logging concepts.
 
-To start a local development server, run:
+Currently, steps 1,2 are implemented.
 
-```bash
-ng serve
-```
+## Features
+- Event listing and details
+- Add new events
+- Book seats for events
+- View and manage bookings
+- API server configuration via environment files
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Technologies
+- Angular 15+
+- TypeScript
+- Angular Material
+- Angular Router
+- HttpClient for API communication
 
-## Code scaffolding
+## Setup & Installation
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Development server:**
+   ```bash
+   npm start
+   ```
+   The app will run at `http://localhost:4200/` by default.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. **Build for production:**
+   ```bash
+   npm run build --configuration=production
+   ```
+   The production build will use the API URL from `src/environments/environment.prod.ts`.
 
-```bash
-ng generate component component-name
-```
+4. **Build destination:**
+   The build output will be in the `dist/ngrupp-fe-app/` directory.
+   For Azure deployment pipeline location of deliverable is `ngrupp-fe-app\dist\ngrupp-fe-app\browser`.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Environment Configuration
+- API server URL is set in `src/environments/environment.ts` (development) and `src/environments/environment.prod.ts` (production).
+- To change the API endpoint, edit the `apiUrl` property in the respective environment file.
 
-```bash
-ng generate --help
-```
+## Routing
+- `/` - Event List
+- `/add-event` - Add Event
+- `/booking-details/:eventId` - Booking Details for an Event
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Azure Deployment
+- Application is deployed to Azure Static Web Apps.
+- Default pipeline is modified to build production configuration:
+  ```yaml
+    env:
+      #...
+      NODE_VERSION: '20.x'                # set this to the node version to use
+      #...
+    - name: Build And Deploy
+      #...
+      app_build_command: "npm run build -- --configuration=production"
+      #...
+        
+  ```
+- Set the production API URL in `environment.prod.ts` to match your backend endpoint.
