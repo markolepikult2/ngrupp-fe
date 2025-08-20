@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { EventService } from '../event.service';
 import { AppEvent } from '../models';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -20,7 +21,7 @@ export class AddEventComponent {
   success = false;
   error: string | null = null;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   addEvent() {
     this.success = false;
@@ -29,6 +30,7 @@ export class AddEventComponent {
       next: () => {
         this.success = true;
         this.event = { name: '', startTime: '', seats: 1 };
+        this.router.navigate(['/']); // Route to root after success
       },
       error: err => {
         this.error = err.message || 'Failed to add event.';

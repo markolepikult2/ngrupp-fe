@@ -32,4 +32,8 @@ export class EventList {
     this.selectedEventId = event.id;
     this.router.navigate(['/booking-details', event.id]);
   }
+
+  goToAddEvent() {
+    this.router.navigate(['/add-event']);
+  }
 }
