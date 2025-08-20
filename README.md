@@ -21,6 +21,14 @@ Currently, steps 1,2 are implemented.
 - View and manage bookings
 - API server configuration via environment files
 
+## Technical decomposition
+Major contexts of top-level activities are navigated via Angular Router:
+- `/` - Home page with event list
+- `/add-event` - Add Event
+- `/booking-details/:eventId` - Booking Details for an Event
+
+Child components of each context communicate throug events.
+
 ## Technologies
 - Angular 15+
 - TypeScript
@@ -52,11 +60,6 @@ Currently, steps 1,2 are implemented.
 ## Environment Configuration
 - API server URL is set in `src/environments/environment.ts` (development) and `src/environments/environment.prod.ts` (production).
 - To change the API endpoint, edit the `apiUrl` property in the respective environment file.
-
-## Routing
-- `/` - Event List
-- `/add-event` - Add Event
-- `/booking-details/:eventId` - Booking Details for an Event
 
 ## Azure Deployment
 - Application is deployed to Azure Static Web Apps.
