@@ -65,14 +65,9 @@ Child components of each context communicate throug events.
 - Application is deployed to Azure Static Web Apps.
 - Default pipeline is modified to build production configuration:
   ```yaml
-    env:
-      #...
-      NODE_VERSION: '20.x'                # set this to the node version to use
-      #...
-    - name: Build And Deploy
-      #...
-      app_build_command: "npm run build -- --configuration=production"
-      #...
-        
+  env:
+    NODE_VERSION: '20.x'                # set this to the node version to use
+
+  app_build_command: "npm run build -- --configuration=production"
   ```
 - Set the production API URL in `environment.prod.ts` to match your backend endpoint.
