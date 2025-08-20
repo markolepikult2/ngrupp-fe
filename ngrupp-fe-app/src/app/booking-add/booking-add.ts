@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BookingService } from '../booking.service';
-import { AppEvent, Customer, BookingDTO } from '../models';
+import { Customer, BookingDTO } from '../models';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-booking-add',
@@ -10,18 +11,30 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule],
   styleUrls: ['./booking-add.scss']
 })
-export class BookingAddComponent {
-  eventId: number | null = null;
+export class BookingAddComponent implements OnInit {
+  eventId: number | '' = '';
   firstName = '';
   lastName = '';
   personalCode = '';
   success = false;
   error: string | null = null;
 
-  constructor(private bookingService: BookingService) {}
+  @Output() bookingAdded = new EventEmitter<void>();
+
+  constructor(private bookingService: BookingService, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('eventId');
+      if (id) {
+        this.eventId = Number(id);
+      }
+    });
+  }
+
 
   submitBooking() {
-    if (!this.eventId || !this.firstName || !this.lastName || !this.personalCode) {
+    if (this.eventId === '' || !this.firstName || !this.lastName || !this.personalCode) {
       this.error = 'All fields are required.';
       this.success = false;
       return;
@@ -33,13 +46,14 @@ export class BookingAddComponent {
       personalCode: this.personalCode
     };
     const bookingDTO: BookingDTO = {
-      event: { id: this.eventId, name: '', startTime: '', seats: 0 },
+      event: { id: Number(this.eventId), name: '', startTime: '', seats: 0 },
       customers: [customer]
     };
     this.bookingService.addBooking(bookingDTO).subscribe({
       next: () => {
         this.success = true;
         this.error = null;
+        this.bookingAdded.emit(); // Notify parent to reload booking list
       },
       error: () => {
         this.success = false;
@@ -48,4 +62,3 @@ export class BookingAddComponent {
     });
   }
 }
-

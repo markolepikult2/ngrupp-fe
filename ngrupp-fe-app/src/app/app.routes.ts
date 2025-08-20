@@ -22,5 +22,12 @@ export const routes: Routes = [
     component: BookingDetailsComponent,
     canActivate: [RoleGuard],
     data: {allowedRoles : ['ADMIN', 'CUSTOMER', 'GUEST']}
+  },
+  {
+    path: '',
+    component: EventList,
+    pathMatch: 'full',
+    canActivate: [RoleGuard],
+    data: {allowedRoles : ['ADMIN', 'CUSTOMER', 'GUEST']}
   }
 ];

@@ -4,6 +4,7 @@ import { AppEvent } from '../models';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http';
 import {BookingDetailsComponent} from '../booking-details/booking-details';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -13,10 +14,11 @@ import {BookingDetailsComponent} from '../booking-details/booking-details';
 })
 export class EventList {
   @Output() selectedEvent = new EventEmitter<AppEvent>();
+  @Output() bookSeat = new EventEmitter<number>();
   events: AppEvent[] = [];
   selectedEventId: number | null = null;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit() {
     this.eventService.getEvents().subscribe((data) => {
@@ -25,8 +27,9 @@ export class EventList {
   }
 
   openBookingDetails(event: AppEvent) {
-    console.log("Clicked Book Seat:", event);
-    this.selectedEventId = event.id;
+    console.log("Opening booking details for event:", event);
     this.selectedEvent.emit(event);
+    this.selectedEventId = event.id;
+    this.router.navigate(['/booking-details', event.id]);
   }
 }

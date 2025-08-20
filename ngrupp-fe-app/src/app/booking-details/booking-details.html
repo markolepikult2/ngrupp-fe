@@ -17,6 +17,9 @@
     </ul>
   </div>
   <div *ngIf="error" class="error">{{ error }}</div>
+
+  <app-booking-add (bookingAdded)="fetchBooking()"></app-booking-add>
+
 </div>
 
 

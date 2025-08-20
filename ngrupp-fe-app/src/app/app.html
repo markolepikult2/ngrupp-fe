@@ -123,18 +123,14 @@
 
 <app-header></app-header>
 <main class="main">
-  <div *ngIf="!selectedEvent" class="content">
-    <app-event-list (selectedEvent)="receiveSelectedEvent($event)"></app-event-list>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <app-add-event></app-add-event>
-  </div>
-  <div>
-    <app-booking-details
-      *ngIf="selectedEvent" [eventId]="selectedEvent?.id"
-      (selectedEvent)="receiveSelectedEvent($event)"
-      (close)="selectedEvent = null"></app-booking-details>
-    <app-booking-add  *ngIf="selectedEvent"></app-booking-add>
-  </div>
+  <ng-container *ngIf="!selectedEvent">
+    <div class="content">
+      <app-event-list (selectedEvent)="receiveSelectedEvent($event)"></app-event-list>
+      <div class="divider" role="separator" aria-label="Divider"></div>
+      <app-add-event></app-add-event>
+    </div>
+  </ng-container>
+
 
   <!-- div class="divider" role="separator" aria-label="Divider">UUUUU</div -->
 
