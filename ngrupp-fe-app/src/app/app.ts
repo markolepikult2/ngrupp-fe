@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Header} from './header/header';
-import { EventList } from './event-list/event-list';
-import { AddEventComponent } from './add-event/add-event';
 import { HttpClientModule } from '@angular/common/http';
 import { AppEvent } from './models';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, EventList, HttpClientModule, AddEventComponent, CommonModule],
+  imports: [RouterOutlet, Header, HttpClientModule, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -40,14 +38,4 @@ export class App implements OnInit {
       }
     });
   }
-
-  receiveSelectedEvent($selectedEvent: AppEvent) {
-    this.selectedEvent = $selectedEvent;
-    console.log("receiveSelectedEvent: received selectedEvent in App component:", this.selectedEvent);
-    if (this.selectedEvent)
-      localStorage.setItem('selectedEvent', JSON.stringify($selectedEvent));
-    else
-      localStorage.removeItem('selectedEvent');
-  }
-
 }
