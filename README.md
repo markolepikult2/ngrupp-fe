@@ -12,7 +12,7 @@ The development strategy is as follows:
 4. Apply UI styling.
 5. Implement error handling and logging concepts.
 
-Currently, steps 1,2 are implemented.
+Currently, steps 1,2,3 are implemented.
 
 ## Features
 - Event listing and details
