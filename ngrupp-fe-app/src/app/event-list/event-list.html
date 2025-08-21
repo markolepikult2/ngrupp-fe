@@ -15,11 +15,6 @@
           <button (click)="openBookingDetails(event)">Book seat</button>
         </td>
     </tr>
-    <tr>
-      <td colspan="4" style="text-align:right;">
-        <button (click)="goToAddEvent()">Add Event</button>
-      </td>
-    </tr>
   </table>
 </div>
 <app-booking-details *ngIf="selectedEventId" [eventId]="selectedEventId" (close)="selectedEventId = null"></app-booking-details>
