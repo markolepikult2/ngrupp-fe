@@ -15,13 +15,8 @@
           <button (click)="openBookingDetails(event)">Book seat</button>
         </td>
     </tr>
-    <tr>
-      <td colspan="4" style="text-align:right;">
-        <button (click)="goToAddEvent()">Add Event</button>
-      </td>
-    </tr>
   </table>
 </div>
 <app-booking-details *ngIf="selectedEventId" [eventId]="selectedEventId" (close)="selectedEventId = null"></app-booking-details>
 
-<app-add-event *ngIf="isLoggedOn"></app-add-event>
+<app-add-event *ngIf="isLoggedOn" (eventAdded)="reloadEvents()"></app-add-event>

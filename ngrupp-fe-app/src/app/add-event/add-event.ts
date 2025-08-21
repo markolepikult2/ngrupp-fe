@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EventService } from '../event.service';
 import { AppEvent } from '../models';
@@ -21,6 +21,8 @@ export class AddEventComponent {
   success = false;
   error: string | null = null;
 
+  @Output() eventAdded = new EventEmitter<void>();
+
   constructor(private eventService: EventService, private router: Router) {}
 
   addEvent() {
@@ -30,6 +32,7 @@ export class AddEventComponent {
       next: () => {
         this.success = true;
         this.event = { name: '', startTime: '', seats: 1 };
+        this.eventAdded.emit(); // Notify parent to reload event list
         this.router.navigate(['/']); // Route to root after success
       },
       error: err => {

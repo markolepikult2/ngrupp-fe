@@ -15,7 +15,7 @@ export const routes: Routes = [
     path: 'add-event',
     component: AddEventComponent,
     canActivate: [RoleGuard],
-    data: {allowedRoles : ['ADMIN', 'CUSTOMER', 'GUEST']}
+    data: {allowedRoles : ['ADMIN', 'CUSTOMER']}
   },
   {
     path: 'booking-details/:eventId',

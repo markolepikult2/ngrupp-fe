@@ -41,7 +41,9 @@ export class EventList {
     this.router.navigate(['/booking-details', event.id]);
   }
 
-  goToAddEvent() {
-    this.router.navigate(['/add-event']);
+  reloadEvents() {
+    this.eventService.getEvents().subscribe((data) => {
+      this.events = data;
+    });
   }
 }
