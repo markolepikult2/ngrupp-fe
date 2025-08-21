@@ -23,3 +23,5 @@
   </table>
 </div>
 <app-booking-details *ngIf="selectedEventId" [eventId]="selectedEventId" (close)="selectedEventId = null"></app-booking-details>
+
+<app-add-event *ngIf="isLoggedOn"></app-add-event>
