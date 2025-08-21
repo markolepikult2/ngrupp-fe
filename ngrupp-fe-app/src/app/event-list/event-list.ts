@@ -40,4 +40,10 @@ export class EventList {
     this.selectedEventId = event.id;
     this.router.navigate(['/booking-details', event.id]);
   }
+
+  reloadEvents() {
+    this.eventService.getEvents().subscribe((data) => {
+      this.events = data;
+    });
+  }
 }
