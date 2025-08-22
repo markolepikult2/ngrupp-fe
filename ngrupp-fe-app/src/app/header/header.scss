@@ -1,0 +1,27 @@
+.app-header {
+  border: 2px solid #1976d2;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: #60a4f3;
+
+  .header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header-login-form {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
